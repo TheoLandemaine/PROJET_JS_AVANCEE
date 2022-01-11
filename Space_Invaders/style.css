@@ -24,6 +24,19 @@ h3 {
     text-align: center;
     margin: 20px 0;
 }
+.container{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
+
+button {
+    padding: 10px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+}
 .grille div {
     width: 25px;
     height: 25px;
