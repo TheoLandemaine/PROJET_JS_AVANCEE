@@ -4,7 +4,8 @@ let resultats = 0;
 let toutesLesDivs;
 let alienInvaders = [];
 let tireurPosition = 229;
-let direction = 1;
+let directionHoriz = 1;
+let directionVert = 20;
 let width = 20;
 
 function creationGrilleEtAliens(){
@@ -55,32 +56,92 @@ function creationGrilleEtAliens(){
     })
 
     toutesLesDivs[tireurPosition].classList.add('tireur');
+
 }
 
 function deplacementAlien(){
 
-    if (alienInvaders <= 221) {
+    console.log("test")
 
-        console.log("test")
+    for (let i = 0; i < alienInvaders.length; i++) {
 
-        for (let i = 0; i < alienInvaders.length; i++) {
+        if (toutesLesDivs)
+
+        if (alienInvaders < 229) {
+
             alienInvaders[i] += direction;
             console.log("test2")
-        }
-    
-        setInterval(deplacementAlien, 1000);
-    
-        creationGrilleEtAliens();
 
+        }
+        
     }
+
+    setInterval(deplacementAlien, 1000);
+    creationGrilleEtAliens();
+
+}
+
+function deplacementJoueur() {
+
+    document.onkeydown = function(e) {
+
+        switch (e.key) {
+            case "ArrowLeft":       // Left pressed
+                console.log("left");
+                toutesLesDivs[tireurPosition].classList.remove('tireur');
+                
+                tireurPosition -= directionHoriz;
+                console.log(tireurPosition);
+
+                toutesLesDivs[tireurPosition].classList.add('tireur');
+
+                break;
+            
+            case "ArrowRight":      // Right pressed
+                console.log("rigth");
+                toutesLesDivs[tireurPosition].classList.remove('tireur');
+
+                tireurPosition += directionHoriz;
+                console.log(tireurPosition);
+
+                toutesLesDivs[tireurPosition].classList.add('tireur');
+
+                break;
+        
+            case "ArrowUp":         // Up pressed
+                console.log("up");
+                toutesLesDivs[tireurPosition].classList.remove('tireur');
+                
+                tireurPosition -= directionVert;
+                console.log(tireurPosition);
+
+                toutesLesDivs[tireurPosition].classList.add('tireur');
+                
+                break;
+
+            case "ArrowDown":       // Down pressed
+                console.log("down");
+                toutesLesDivs[tireurPosition].classList.remove('tireur');
+
+                tireurPosition += directionVert;
+                console.log(tireurPosition);
+
+                toutesLesDivs[tireurPosition].classList.add('tireur');
+                
+                break;
+        }
+    };
 
 }
 
 document.getElementById('start').addEventListener('click', function(e){
 
-    deplacementAlien();
+    //deplacementAlien();
+    creationGrilleEtAliens();
+    deplacementJoueur();
 
 })
+
 
 
 
