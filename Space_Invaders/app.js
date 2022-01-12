@@ -67,17 +67,36 @@ function remove() {
   }
 
 function deplacementAlien(){
+    const left = alienInvaders[0] % width === 0
+    const right = alienInvaders[alienInvaders.length - 1] % width === width -1
+           
 
-    console.log("test")
     remove();
+
+    if (right && moveRight) {
+        for (let i = 0; i < alienInvaders.length; i++) {
+          alienInvaders[i] += directionVert +1
+          directionHoriz = -1
+          moveRight = false
+        }
+      }
+    
+      if(left && !moveRight) {
+        for (let i = 0; i < alienInvaders.length; i++) {
+          alienInvaders[i] += directionVert -1
+          directionHoriz = 1
+          moveRight = true
+        }
+      }
 
     for (let i = 0; i < alienInvaders.length; i++) {
         alienInvaders[i] += directionHoriz;
         toutesLesDivs[alienInvaders[i]].classList.add('alien');
-        console.log("test2")
+
+        
     }
 
-    setTimeout(deplacementAlien, 100);
+    setTimeout(deplacementAlien, 1000);
 
 }
 
