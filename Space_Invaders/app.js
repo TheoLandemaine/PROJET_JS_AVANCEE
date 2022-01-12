@@ -7,6 +7,7 @@ let tireurPosition = 229;
 let directionHoriz = 1;
 let directionVert = 20;
 let width = 20;
+let moveRight = true;
 
 function creationGrilleEtAliens(){
 
@@ -59,25 +60,25 @@ function creationGrilleEtAliens(){
 
 }
 
+function remove() {
+    for (let i = 0; i < alienInvaders.length; i++) {
+        toutesLesDivs[alienInvaders[i]].classList.remove('alien')
+    }
+  }
+
 function deplacementAlien(){
 
+    remove()
     console.log("test")
 
+
     for (let i = 0; i < alienInvaders.length; i++) {
-
-        if (toutesLesDivs)
-
-        if (alienInvaders < 229) {
-
-            alienInvaders[i] += direction;
-            console.log("test2")
-
-        }
-        
+        alienInvaders[i] += directionHoriz;
+        toutesLesDivs[alienInvaders[i]].classList.add('alien');
+        console.log("test2")
     }
 
     setInterval(deplacementAlien, 1000);
-    creationGrilleEtAliens();
 
 }
 
@@ -134,72 +135,18 @@ function deplacementJoueur() {
 
 }
 
+
+
 document.getElementById('start').addEventListener('click', function(e){
 
-    //deplacementAlien();
-    creationGrilleEtAliens();
+    deplacementAlien();
     deplacementJoueur();
 
 })
 
+creationGrilleEtAliens();
 
 
 
-// document.getElementById('start').addEventListener('click', function(e){
-//     alert('Start')
-//     const grid = document.querySelector('.grille')
-    
-//     for(let i= 0; i <= 195; i++) {
-//         const cell = document.createElement('div');
-
-//         cell.style.width = "35px";
-//         cell.style.height = "35px";
-
-//         grid.appendChild(cell);
-//     }
-
-//     const cells = Array.from(document.querySelectorAll('.grille div'));
-
-//     var alliensI = [
-//         0,1,2,3,4,5,6,7,8,9,
-//         14,15,16,17,18,19,20,21,22,23,
-//         28,29,30,31,32,33,34,35,36,37
-//     ];
-
-//     function alien(){
-        
-//         for (let i=0; i < alliensI.length; i++) {
-//             cells[alliensI[i]].classList.add('alien')
-            
-//         }
-//     }
-
-//     alien();
-
-//     cells[189].classList.add('tireur')
-
-//     deplacementAlien();
 
 
-//     function deplacementAlien() {
-
-//         console.log('test');
-
-//         for (let i = 0; i < 4; i++) {
-
-//             console.log("premiere boucle")
-
-//             for (let j = 0; j < alliensI.length; j++) {
-
-//                 console.log("deuxieme boucle")
-
-//                 //alliensI[j] = alliensI[j+1];
-                
-//                 //cells[j+1].classList.add('alien');
-//                 // cells[alliensI[j]].classList.remove('alien');
-//             }
-//         }
-            
-//     }
-
-// })
