@@ -68,9 +68,8 @@ function remove() {
 
 function deplacementAlien(){
 
-    remove()
     console.log("test")
-
+    remove();
 
     for (let i = 0; i < alienInvaders.length; i++) {
         alienInvaders[i] += directionHoriz;
@@ -78,7 +77,7 @@ function deplacementAlien(){
         console.log("test2")
     }
 
-    setInterval(deplacementAlien, 1000);
+    setTimeout(deplacementAlien, 100);
 
 }
 
@@ -206,7 +205,7 @@ function defaiteHoriz() {
 
 document.getElementById('start').addEventListener('click', function(e){
 
-    //deplacementAlien();
+    deplacementAlien();
     creationGrilleEtAliens();
     deplacementJoueur();
     // defaite();
