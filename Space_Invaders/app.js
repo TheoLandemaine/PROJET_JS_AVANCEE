@@ -103,7 +103,7 @@ function deplacementJoueurRight() {
 }
 
 function deplacementJoueur() {
-    
+    // defaite();
 
     // const bloc = document.createElement('div');
 
@@ -111,28 +111,34 @@ function deplacementJoueur() {
 
         switch (e.key) {
             case "ArrowLeft":       // Left pressed
-                if (tireurPosition > 180 && tireurPosition <= 199) { 
+                if (tireurPosition > 0 && tireurPosition <= 199) { 
+                    defaiteHoriz();
                     deplacementJoueurLeft();
                 }else if (tireurPosition > 200 && tireurPosition <= 219) { 
+                    defaiteHoriz();
                     deplacementJoueurLeft();
                 }else if (tireurPosition > 220 && tireurPosition <= 240) {
+                    defaiteHoriz();
                     deplacementJoueurLeft();
                 }
                 break;
             
             case "ArrowRight":      // Right pressed
-                if (tireurPosition >= 180 && tireurPosition < 199) { 
+                if (tireurPosition >= 0 && tireurPosition < 199) { 
+                    defaiteHoriz();
                     deplacementJoueurRight();
                 }else if (tireurPosition >= 200 && tireurPosition < 219) { 
+                    defaiteHoriz();
                     deplacementJoueurRight();
                 }else if (tireurPosition >= 220 && tireurPosition < 239) {
+                    defaiteHoriz();
                     deplacementJoueurRight();
                 }
                 break;
         
             case "ArrowUp":         // Up pressed
                 if (tireurPosition >= /*200*/10 && tireurPosition < 240) {
-                    defaite();
+                    defaiteVert();
 
                     console.log("up");
                     toutesLesDivs[tireurPosition].classList.remove('tireur');
@@ -148,6 +154,7 @@ function deplacementJoueur() {
 
             case "ArrowDown":       // Down pressed
                 if (tireurPosition >= 180 && tireurPosition < 220) {
+                    defaiteVert();
 
                     console.log("down");
                     toutesLesDivs[tireurPosition].classList.remove('tireur');
@@ -164,7 +171,7 @@ function deplacementJoueur() {
 
 }
 
-function defaite() {
+function defaiteVert() {
     
     for (let i = 0; i < alienInvaders.length; i++) {
         console.log("tireur = " + tireurPosition);
@@ -174,6 +181,21 @@ function defaite() {
             alert("defaite");
         }
     }
+
+}
+
+function defaiteHoriz() {
+    
+    for (let i = 0; i < alienInvaders.length; i++) {
+        console.log("tireur = " + tireurPosition);
+        console.log("alien = " + alienInvaders[i]);
+
+        if ((tireurPosition-1) == alienInvaders[i]) {
+            alert("defaite");
+        }
+    }
+
+    // creationGrilleEtAliens();
     
     // let defaite = document.querySelectorAll(".tireur");
     
