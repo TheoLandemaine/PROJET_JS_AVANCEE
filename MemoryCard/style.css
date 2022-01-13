@@ -91,7 +91,7 @@ body {
 
 #notification_container .content {
   box-shadow: 0 1px 5px 0 #8d8d8db0;
-  background: url('./ressources/img/card_back.jpg');
+  background: rgb(150, 53, 53);
   padding: 8px;
   border-radius: 4px;
   overflow: hidden;
@@ -101,8 +101,20 @@ body {
   color: white;
 }
 
+#notification_container .content2 {
+  box-shadow: 0 1px 5px 0 #8d8d8db0;
+  background: rgb(55, 134, 47);
+  padding: 8px;
+  border-radius: 4px; 
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: 0 0 15px;
+  color: white;
+}
 
-#notification_container .content p {
+
+#notification_container .content p, .content2 p {
   margin: auto;
   margin-left: 10px;
   font-weight: 600;
@@ -118,5 +130,30 @@ body {
   border-radius : 10px;
   position : relative;
   left : 46%;
-  top : 47%;
+}
+
+#second, #minute,#separator, #timer_txt,#games-p,
+#game-count{
+  color : #fff;
+  font-size: 30px;
+}
+
+.timer_main{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 40%;
+  top : 10px;
+  transform: translate(-40%);
+
+}
+
+.gamecounter_main{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 60%;
+  top : 10px;
+  transform: translate(-60%);
+
 }
