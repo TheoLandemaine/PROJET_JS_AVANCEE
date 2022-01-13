@@ -14,7 +14,7 @@
 
 
 <div>
-    <h4>Project made by:</h4>
+    <h3>Project made by:</h3>
     <a href="https://github.com/justRunnz"><h6>justRunnz |   
     <a href="https://github.com/RuKaSuu">RuKaSuu |
     <a href="https://github.com/TheoLandemaine">TheoLandemaine</a>
@@ -28,7 +28,7 @@
 
 
 <div>
-    <h4>⌨️ Made with : </h4>
+    <h3>⌨️ Made with : </h3>
     <a>
         <img src="https://img.shields.io/badge/--181717?logo=github&logoColor=ffffff">
     </a>
@@ -44,7 +44,7 @@
 </div>
 
 <div>
-    <h4>📊 Stats : </h4>
+    <h3>📊 Stats : </h3>
         <a>
         <img src="https://badgen.net/github/branches/justRunnz/PROJET_JS_AVANCEE/">
     </a>
