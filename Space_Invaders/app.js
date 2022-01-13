@@ -11,6 +11,8 @@ let moveRight = true;
 let restart = document.getElementById('restart');
 let lose = document.getElementById('lose');
 
+let alienDestroy = [];
+
 function creationGrilleEtAliens(){
 
     let indexAttr = 0;
@@ -92,13 +94,15 @@ function deplacementAlien(){
 
     for (let i = 0; i < alienInvaders.length; i++) {
         alienInvaders[i] += directionHoriz;
-        toutesLesDivs[alienInvaders[i]].classList.add('alien');
-        
+        let filtre = alienDestroy.includes(i);
+        if (filtre == false) {
+            toutesLesDivs[alienInvaders[i]].classList.add('alien');
+        }
     }
 
-    setTimeout(deplacementAlien, 100);
+    setTimeout(deplacementAlien, 1000);
     defaite();
-
+    
 }
 
 function deplacementJoueurLeft() {
@@ -190,8 +194,8 @@ function deplacementJoueur() {
 function defaite() {
     
     for (let i = 0; i < alienInvaders.length; i++) {
-        console.log("tireur = " + tireurPosition);
-        console.log("alien = " + alienInvaders[i]);
+        // console.log("tireur = " + tireurPosition);
+        // console.log("alien = " + alienInvaders[i]);
 
         if ((tireurPosition) == alienInvaders[i]) {
             remove();
@@ -200,6 +204,49 @@ function defaite() {
         }
     }
 }
+
+document.addEventListener("keyup", function(e) {
+
+    let laserPosition = tireurPosition;
+
+    function laser() {
+        toutesLesDivs[laserPosition].classList.remove('laser');
+        
+        console.log("tireur = " + tireurPosition)
+        console.log("laser = " + laserPosition)
+    
+        laserPosition -= width;
+        console.log(laserPosition);
+    
+        toutesLesDivs[laserPosition].classList.add('laser');
+    
+    
+        for (let i = 0; i < alienInvaders.length; i++) {
+            // console.log("laser = " + laserPosition)
+            // console.log("alien = " + alienInvaders[i])
+
+            if ((laserPosition) == alienInvaders[i]) {
+                alienDestroy.push(i);
+                console.log(alienDestroy)
+
+                toutesLesDivs[alienInvaders[i]].classList.remove('alien')
+                // alienInvaders.splice(i)
+
+                clearInterval(interval);
+                
+                toutesLesDivs[laserPosition].classList.remove('laser');
+                toutesLesDivs[laserPosition].classList.add('boom');
+                
+                setTimeout(() => {toutesLesDivs[laserPosition].classList.remove('boom')}, 100)   
+            }
+        }
+    }
+
+    if (e.key === " ") {
+        interval = setInterval(() => {laser()}, 100);
+    }
+        
+})
 
 document.getElementById('restart').addEventListener('click', function(e) {
     location.reload();
@@ -212,7 +259,7 @@ document.getElementById('start').addEventListener('click', function(e){
 })
 
 function game() {
-    deplacementAlien();
+    // deplacementAlien();
     creationGrilleEtAliens();
     deplacementJoueur();
 }
