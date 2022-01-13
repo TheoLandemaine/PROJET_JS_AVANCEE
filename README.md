@@ -13,6 +13,14 @@
 
 
 
+<div>
+    <h4>Project made by:</h4>
+    <a href="https://github.com/justRunnz"><h6>justRunnz |   
+    <a href="https://github.com/RuKaSuu">RuKaSuu |
+    <a href="https://github.com/TheoLandemaine">TheoLandemaine</a>
+
+</div>
+
 <a
     href="https://open.vscode.dev/justRunnz/PROJET_JS_AVANCEE/tree/MC-dev/">
     <img src="https://open.vscode.dev/badges/open-in-vscode.svg">
