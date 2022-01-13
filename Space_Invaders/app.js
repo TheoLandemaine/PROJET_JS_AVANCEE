@@ -8,6 +8,8 @@ let directionHoriz = 1;
 let directionVert = 20;
 let width = 20;
 let moveRight = true;
+let restart = document.getElementById('restart');
+let lose = document.getElementById('lose');
 
 function creationGrilleEtAliens(){
 
@@ -69,7 +71,6 @@ function remove() {
 function deplacementAlien(){
     const left = alienInvaders[0] % width === 0
     const right = alienInvaders[alienInvaders.length - 1] % width === width -1
-           
 
     remove();
 
@@ -92,11 +93,11 @@ function deplacementAlien(){
     for (let i = 0; i < alienInvaders.length; i++) {
         alienInvaders[i] += directionHoriz;
         toutesLesDivs[alienInvaders[i]].classList.add('alien');
-
         
     }
 
-    setTimeout(deplacementAlien, 1000);
+    setTimeout(deplacementAlien, 100);
+    defaite();
 
 }
 
@@ -104,7 +105,7 @@ function deplacementJoueurLeft() {
     console.log("left");
     toutesLesDivs[tireurPosition].classList.remove('tireur');
     
-    tireurPosition -= directionHoriz;
+    tireurPosition -= 1;
     console.log(tireurPosition);
 
     toutesLesDivs[tireurPosition].classList.add('tireur');
@@ -114,49 +115,46 @@ function deplacementJoueurRight() {
     console.log("right");
     toutesLesDivs[tireurPosition].classList.remove('tireur');
     
-    tireurPosition += directionHoriz;
+    tireurPosition += 1;
     console.log(tireurPosition);
 
     toutesLesDivs[tireurPosition].classList.add('tireur');
 }
 
 function deplacementJoueur() {
-    // defaite();
-
-    // const bloc = document.createElement('div');
 
     document.onkeydown = function(e) {
 
         switch (e.key) {
             case "ArrowLeft":       // Left pressed
-                if (tireurPosition > 0 && tireurPosition <= 199) { 
-                    defaiteHoriz();
+                if (tireurPosition > 180 && tireurPosition <= 199) { 
+                    defaite();
                     deplacementJoueurLeft();
                 }else if (tireurPosition > 200 && tireurPosition <= 219) { 
-                    defaiteHoriz();
+                    defaite();
                     deplacementJoueurLeft();
-                }else if (tireurPosition > 220 && tireurPosition <= 240) {
-                    defaiteHoriz();
+                }else if (tireurPosition > 220 && tireurPosition <= 239) {
+                    defaite();
                     deplacementJoueurLeft();
                 }
                 break;
             
             case "ArrowRight":      // Right pressed
-                if (tireurPosition >= 0 && tireurPosition < 199) { 
-                    defaiteHoriz();
+                if (tireurPosition >= 180 && tireurPosition < 199) { 
+                    defaite();
                     deplacementJoueurRight();
                 }else if (tireurPosition >= 200 && tireurPosition < 219) { 
-                    defaiteHoriz();
+                    defaite();
                     deplacementJoueurRight();
                 }else if (tireurPosition >= 220 && tireurPosition < 239) {
-                    defaiteHoriz();
+                    defaite();
                     deplacementJoueurRight();
                 }
                 break;
         
             case "ArrowUp":         // Up pressed
-                if (tireurPosition >= /*200*/10 && tireurPosition < 240) {
-                    defaiteVert();
+                if (tireurPosition >= 200 && tireurPosition < 240) {
+                    defaite();
 
                     console.log("up");
                     toutesLesDivs[tireurPosition].classList.remove('tireur');
@@ -172,7 +170,7 @@ function deplacementJoueur() {
 
             case "ArrowDown":       // Down pressed
                 if (tireurPosition >= 180 && tireurPosition < 220) {
-                    defaiteVert();
+                    defaite();
 
                     console.log("down");
                     toutesLesDivs[tireurPosition].classList.remove('tireur');
@@ -189,49 +187,35 @@ function deplacementJoueur() {
 
 }
 
-function defaiteVert() {
+function defaite() {
     
     for (let i = 0; i < alienInvaders.length; i++) {
         console.log("tireur = " + tireurPosition);
         console.log("alien = " + alienInvaders[i]);
 
-        if ((tireurPosition-20) == alienInvaders[i]) {
-            alert("defaite");
+        if ((tireurPosition) == alienInvaders[i]) {
+            remove();
+            lose.style.opacity = 1;
+            restart.style.opacity = 1;
         }
     }
-
 }
 
-function defaiteHoriz() {
-    
-    for (let i = 0; i < alienInvaders.length; i++) {
-        console.log("tireur = " + tireurPosition);
-        console.log("alien = " + alienInvaders[i]);
-
-        if ((tireurPosition-1) == alienInvaders[i]) {
-            alert("defaite");
-        }
-    }
-
-    // creationGrilleEtAliens();
-    
-    // let defaite = document.querySelectorAll(".tireur");
-    
-    // if (defaite.style.transform == ("rotate(180deg)")) {
-    //     console.log("lose")
-    // }
-}
+document.getElementById('restart').addEventListener('click', function(e) {
+    location.reload();
+    restart.style.opacity = 0;
+    lose.style.opacity = 0;
+})
 
 document.getElementById('start').addEventListener('click', function(e){
+    game();
+})
 
+function game() {
     deplacementAlien();
     creationGrilleEtAliens();
     deplacementJoueur();
-    // defaite();
-
-})
-
-
+}
 
 
 // document.getElementById('start').addEventListener('click', function(e){
@@ -295,3 +279,35 @@ document.getElementById('start').addEventListener('click', function(e){
 
 
 
+//function defaiteVert() {
+    
+    //     for (let i = 0; i < alienInvaders.length; i++) {
+    //         console.log("tireur = " + tireurPosition);
+    //         console.log("alien = " + alienInvaders[i]);
+    
+    //         if ((tireurPosition-20) == alienInvaders[i]) {
+    //             alert("defaite");
+    //         }
+    //     }
+    
+    // }
+    
+    // function defaiteHoriz() {
+        
+    //     for (let i = 0; i < alienInvaders.length; i++) {
+    //         console.log("tireur = " + tireurPosition);
+    //         console.log("alien = " + alienInvaders[i]);
+    
+    //         if ((tireurPosition-1) == alienInvaders[i]) {
+    //             alert("defaite");
+    //         }
+    //     }
+    
+    //     // creationGrilleEtAliens();
+        
+    //     // let defaite = document.querySelectorAll(".tireur");
+        
+    //     // if (defaite.style.transform == ("rotate(180deg)")) {
+    //     //     console.log("lose")
+    //     // }
+    // }

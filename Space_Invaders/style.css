@@ -1,3 +1,7 @@
+body {
+    background: url(ressources/fondJeu.jpeg) fixed center/cover;
+    background-size: cover;
+}
 
 .grille {
     display: flex;
@@ -23,6 +27,7 @@
 h3 {
     text-align: center;
     margin: 20px 0;
+    color: white;
 }
 .container{
     display:flex;
@@ -37,6 +42,21 @@ button {
     font-weight: 600;
     margin-top: 10px;
 }
+
+#restart {
+    position: absolute;
+    margin-bottom: 80px;
+    opacity: 0;
+}
+
+#lose {
+    color: white;
+    position: absolute;
+    margin-bottom: 250px;
+    opacity: 0;
+    font-size: 50px;
+}
+
 .grille div {
     width: 25px;
     height: 25px;
