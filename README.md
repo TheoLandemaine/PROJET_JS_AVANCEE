@@ -21,6 +21,8 @@
 
 </div>
 
+<br>
+
 <a
     href="https://open.vscode.dev/justRunnz/PROJET_JS_AVANCEE/tree/MC-dev/">
     <img src="https://open.vscode.dev/badges/open-in-vscode.svg">
