@@ -51,10 +51,10 @@
         <img src="https://badgen.net/github/branches/justRunnz/PROJET_JS_AVANCEE/">
     </a>
     <a>
-        <img src="https://badgen.net/github/commits/justRunnz/PROJET_JS_AVANCEE/MC-dev/">
+        <img src="https://badgen.net/github/commits/justRunnz/PROJET_JS_AVANCEE/MC-dev">
     </a>
     <a>
-        <img src="https://badgen.net/github/last-commit/justRunnz/PROJET_JS_AVANCEE/MC-dev/">
+        <img src="https://badgen.net/github/last-commit/justRunnz/PROJET_JS_AVANCEE/MC-dev">
     </a>
     <!-- <a>
         <img src="https://img.shields.io/github/downloads/justRunnz/PROJET_JS_AVANCEE/MC-dev/total.svg">
