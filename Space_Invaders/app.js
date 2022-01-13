@@ -1,21 +1,40 @@
+/*
+----------------------------------------------------------------------------------------------------------------------
+****************************************    DÉCLARATION VARIABLES GLOBALES    ****************************************
+----------------------------------------------------------------------------------------------------------------------
+*/
+
+const TIR = new Audio( 'ressources/son-blaster.mp3' );
+const FOND = new Audio( 'ressources/fond-sonore.mp3' );
+
 const container = document.querySelector('.grille');
 const affichage = document.querySelector('h3');
+
+let restart = document.getElementById('restart');
+let lose = document.getElementById('lose');
+let win = document.getElementById('win');
+let start = document.getElementById('start');
+
 let resultats = 0;
 let toutesLesDivs;
-let alienInvaders = [];
 let tireurPosition = 229;
 let directionHoriz = 1;
 let directionVert = 20;
 let width = 20;
-let moveRight = true;
-let restart = document.getElementById('restart');
-let lose = document.getElementById('lose');
-let win = document.getElementById('win');
-let mouvFin = true;
-let start = document.getElementById('start');
+let point = 0;
+
+let alienInvaders = [];
 let alienDestroy = [];
-const TIR = new Audio( 'ressources/son-blaster.mp3' );
-const FOND = new Audio( 'ressources/fond-sonore.mp3' );
+
+let canShoot = true;
+let moveRight = true;
+let mouvFin = true;
+
+/*
+----------------------------------------------------------------------------------------------------------------------
+*******************************************    CRÉATION GRILLE & ALIENS    *******************************************
+----------------------------------------------------------------------------------------------------------------------
+*/
 
 function creationGrilleEtAliens(){
 
@@ -68,11 +87,11 @@ function creationGrilleEtAliens(){
 
 }
 
-function remove() {
-    for (let i = 0; i < alienInvaders.length; i++) {
-        toutesLesDivs[alienInvaders[i]].classList.remove('alien')
-    }
-  }
+/*
+----------------------------------------------------------------------------------------------------------------------
+**********************************************    DÉPLACEMENT ALIENS    **********************************************
+----------------------------------------------------------------------------------------------------------------------
+*/
 
 function deplacementAlien(){
 
@@ -110,10 +129,15 @@ function deplacementAlien(){
 
         setTimeout(deplacementAlien, 1000);
         defaite();
-
     }
     
 }
+
+/*
+----------------------------------------------------------------------------------------------------------------------
+**********************************************    DÉPLACEMENT JOUEUR    **********************************************
+----------------------------------------------------------------------------------------------------------------------
+*/
 
 function deplacementJoueurLeft() {
     if (mouvFin) {
@@ -205,8 +229,13 @@ function deplacementJoueur() {
                 break;
         }
     };
-
 }
+
+/*
+-----------------------------------------------------------------------------------------------------------------------
+*************************************************    CONDITION FIN    *************************************************
+-----------------------------------------------------------------------------------------------------------------------
+*/
 
 function defaite() {
     
@@ -218,13 +247,12 @@ function defaite() {
             remove();
             lose.style.opacity = 1;
             restart.style.opacity = 1;
+
             toutesLesDivs[tireurPosition].classList.remove('tireur');
             mouvFin = false;
         }
     }
 }
-
-let point = 0;
 
 function victoire() {
 
@@ -232,69 +260,113 @@ function victoire() {
         remove();
         win.style.opacity = 1;
         restart.style.opacity = 1;
+
         toutesLesDivs[tireurPosition].classList.remove('tireur');
         mouvFin = false;
-
     }
 }
 
-document.addEventListener("keyup", function(e) {
+/*
+----------------------------------------------------------------------------------------------------------------------
+***********************************************    AUTRES FONCTIONS    ***********************************************
+----------------------------------------------------------------------------------------------------------------------
+*/
+
+function game() {
+    FOND.volume = 0.1;
+    FOND.play();
+    FOND.loop = true;
+
+    deplacementAlien();
+    creationGrilleEtAliens();
+    deplacementJoueur();
+    start.remove();
+    mouvFin = true;
+}
+
+function remove() {
+    for (let i = 0; i < alienInvaders.length; i++) {
+        toutesLesDivs[alienInvaders[i]].classList.remove('alien')
+    }
+}
+
+/*
+----------------------------------------------------------------------------------------------------------------------
+**********************************************    ADD EVENT LISTENER    **********************************************
+----------------------------------------------------------------------------------------------------------------------
+*/
+
+document.addEventListener("keydown", function(e) {
+    console.log(canShoot + " 1");
     let laserPosition = tireurPosition;
 
-    function laser() {
-        toutesLesDivs[laserPosition].classList.remove('laser');
-        
-        console.log("tireur = " + tireurPosition)
-        console.log("laser = " + laserPosition)
-    
-        laserPosition -= width;
-        console.log(laserPosition);
-    
-        toutesLesDivs[laserPosition].classList.add('laser');
-    
-        // for (let i = 0; i < alienInvaders.length; i++) {
+    if (canShoot == true) {
+        function laser() {
+            canShoot = false;
+            console.log(canShoot + " 2");
+            toutesLesDivs[laserPosition].classList.remove('laser');
+            
+            // console.log("tireur = " + tireurPosition)
             // console.log("laser = " + laserPosition)
-            // console.log("alien = " + alienInvaders[i])
-
-            if (toutesLesDivs[laserPosition].classList.contains("alien")) {
-                point += 100;
-                console.log("test ttesttse et t est es tet t et est et st")
-
-                const test = alienInvaders.indexOf(laserPosition);
-                alienDestroy.push(test);
-                console.log(test)
-                console.log(alienDestroy)
-
-                toutesLesDivs[laserPosition].classList.remove('alien')
-
-                clearInterval(interval);
-
-                console.log("dfgerhbrtgrbergrsgergsvergze fzefze cgze cze  fhezcj zb hvhcg dg bczghc dnhgd zc hjds cjeh cbb ")
-                
-                toutesLesDivs[laserPosition].classList.remove('laser');
-                toutesLesDivs[laserPosition].classList.add('boom');
-                
-                setTimeout(() => {toutesLesDivs[laserPosition].classList.remove('boom')}, 100)   
-
-                document.querySelector("h3").innerHTML = `Scores : ${point}`;
-                victoire()
-            }
-        // }
-    }
-
-    if (e.key === " ") {
-        TIR.play();
-        TIR.volume = 0.2;
-        interval = setInterval(() => {laser()}, 100);
-        setTimeout(document.addEventListener("keyup", function(e) {}, 2000));
-    }
         
+            laserPosition -= width;
+            // console.log(laserPosition);
+        
+            toutesLesDivs[laserPosition].classList.add('laser');
+        
+            // for (let i = 0; i < alienInvaders.length; i++) {
+                // console.log("laser = " + laserPosition)
+                // console.log("alien = " + alienInvaders[i])
+    
+                if (toutesLesDivs[laserPosition].classList.contains("alien")) {
+                    console.log(canShoot + " 3");
+                    clearInterval(interval);
+
+                    point += 100;
+                    // console.log("test ttesttse et t est es tet t et est et st")
+    
+                    const test = alienInvaders.indexOf(laserPosition);
+                    alienDestroy.push(test);
+                    // console.log(test)
+                    // console.log(alienDestroy)
+    
+                    toutesLesDivs[laserPosition].classList.remove('alien')
+    
+                    // console.log("dfgerhbrtgrbergrsgergsvergze fzefze cgze cze  fhezcj zb hvhcg dg bczghc dnhgd zc hjds cjeh cbb ")
+                    
+                    toutesLesDivs[laserPosition].classList.remove('laser');
+                    toutesLesDivs[laserPosition].classList.add('boom');
+                    
+                    setTimeout(() => {toutesLesDivs[laserPosition].classList.remove('boom')}, 100)   
+
+                    // laserPosition=0;
+    
+                    document.querySelector("h3").innerHTML = `Scores : ${point}`;
+                    victoire()
+
+                }
+            // }
+        }
+        console.log(canShoot + " 4");
+    }
+    
+    if (e.key === " ") {
+
+        if (canShoot == true) {
+            TIR.play();
+            TIR.volume = 0.2;
+        }
+        
+        interval = setInterval(() => {laser()}, 100);
+        setTimeout(() => {canShoot = true}, 1000);
+    }
 })
 
 document.getElementById('restart').addEventListener('click', function(e) {
     location.reload();
     restart.style.opacity = 0;
     lose.style.opacity = 0;
+
     let startButton = document.createElement("button");
     startButton.setAttribute('id', 'start');
     document.body.appendChild(startButton);
@@ -303,17 +375,6 @@ document.getElementById('restart').addEventListener('click', function(e) {
 document.getElementById('start').addEventListener('click', function(e){
     game();
 })
-
-function game() {
-    FOND.volume = 0.1;
-    FOND.play();
-    FOND.loop = true;
-    deplacementAlien();
-    creationGrilleEtAliens();
-    deplacementJoueur();
-    start.remove();
-    mouvFin = true;
-}
 
 /*
 -----------------------------------------------------------------------------------------------------------------------
