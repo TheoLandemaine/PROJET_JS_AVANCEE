@@ -10,8 +10,12 @@ let width = 20;
 let moveRight = true;
 let restart = document.getElementById('restart');
 let lose = document.getElementById('lose');
-
+let win = document.getElementById('win');
+let mouvFin = true;
+let start = document.getElementById('start');
 let alienDestroy = [];
+const TIR = new Audio( 'ressources/son-blaster.mp3' );
+const FOND = new Audio( 'ressources/fond-sonore.mp3' );
 
 function creationGrilleEtAliens(){
 
@@ -39,23 +43,23 @@ function creationGrilleEtAliens(){
 
     }
 
-
     for(i = 1; i < 53; i++ ){
 
-      if(i === 13){
-          i = 21;
-          alienInvaders.push(i);
-      } else if (i === 33){
-          i = 41;
-          alienInvaders.push(i);
-      } else {
-          alienInvaders.push(i);
-      }
+        if(i === 13){
+            i = 21;
+            alienInvaders.push(i);
+        } else if (i === 33){
+            i = 41;
+            alienInvaders.push(i);
+        } else {
+            alienInvaders.push(i);
+        }
 
     }
     console.log(alienInvaders);
 
     toutesLesDivs = document.querySelectorAll('.grille div');
+    
     alienInvaders.forEach(invader => {
         toutesLesDivs[invader].classList.add('alien');
     })
@@ -71,61 +75,72 @@ function remove() {
   }
 
 function deplacementAlien(){
-    const left = alienInvaders[0] % width === 0
-    const right = alienInvaders[alienInvaders.length - 1] % width === width -1
 
-    remove();
+    if (mouvFin) {
 
-    if (right && moveRight) {
+        const left = alienInvaders[0] % width === 0
+        const right = alienInvaders[alienInvaders.length - 1] % width === width -1
+
+        remove();
+
+        if (right && moveRight) {
+            for (let i = 0; i < alienInvaders.length; i++) {
+            alienInvaders[i] += directionVert +1
+            directionHoriz = -1
+            moveRight = false
+            }
+        }
+        
+        if (left && !moveRight) {
+            for (let i = 0; i < alienInvaders.length; i++) {
+            alienInvaders[i] += directionVert -1
+            directionHoriz = 1
+            moveRight = true
+            }
+        }
+
         for (let i = 0; i < alienInvaders.length; i++) {
-          alienInvaders[i] += directionVert +1
-          directionHoriz = -1
-          moveRight = false
-        }
-      }
-    
-      if(left && !moveRight) {
-        for (let i = 0; i < alienInvaders.length; i++) {
-          alienInvaders[i] += directionVert -1
-          directionHoriz = 1
-          moveRight = true
-        }
-      }
+            alienInvaders[i] += directionHoriz;
 
-    for (let i = 0; i < alienInvaders.length; i++) {
-        alienInvaders[i] += directionHoriz;
-        let filtre = alienDestroy.includes(i);
-        if (filtre == false) {
-            toutesLesDivs[alienInvaders[i]].classList.add('alien');
+            let filtre = alienDestroy.includes(i);
+            if (filtre == false) {
+                toutesLesDivs[alienInvaders[i]].classList.add('alien');
+            }
         }
+
+        setTimeout(deplacementAlien, 1000);
+        defaite();
+
     }
-
-    setTimeout(deplacementAlien, 1000);
-    defaite();
     
 }
 
 function deplacementJoueurLeft() {
-    console.log("left");
-    toutesLesDivs[tireurPosition].classList.remove('tireur');
-    
-    tireurPosition -= 1;
-    console.log(tireurPosition);
+    if (mouvFin) {
+        console.log("left");
+        toutesLesDivs[tireurPosition].classList.remove('tireur');
+        
+        tireurPosition -= 1;
+        console.log(tireurPosition);
 
-    toutesLesDivs[tireurPosition].classList.add('tireur');
+        toutesLesDivs[tireurPosition].classList.add('tireur');
+    }
 }
 
 function deplacementJoueurRight() {
-    console.log("right");
-    toutesLesDivs[tireurPosition].classList.remove('tireur');
-    
-    tireurPosition += 1;
-    console.log(tireurPosition);
+    if (mouvFin) {
+        console.log("right");
+        toutesLesDivs[tireurPosition].classList.remove('tireur');
+        
+        tireurPosition += 1;
+        console.log(tireurPosition);
 
-    toutesLesDivs[tireurPosition].classList.add('tireur');
+        toutesLesDivs[tireurPosition].classList.add('tireur');
+    }
 }
 
 function deplacementJoueur() {
+
 
     document.onkeydown = function(e) {
 
@@ -160,14 +175,15 @@ function deplacementJoueur() {
                 if (tireurPosition >= 200 && tireurPosition < 240) {
                     defaite();
 
-                    console.log("up");
-                    toutesLesDivs[tireurPosition].classList.remove('tireur');
-                    
-                    tireurPosition -= directionVert;
-                    console.log(tireurPosition);
+                    if (mouvFin) {
+                        console.log("up");
+                        toutesLesDivs[tireurPosition].classList.remove('tireur');
+                        
+                        tireurPosition -= directionVert;
+                        console.log(tireurPosition);
 
-                    toutesLesDivs[tireurPosition].classList.add('tireur');
-
+                        toutesLesDivs[tireurPosition].classList.add('tireur');
+                    }
                 }
                 
                 break;
@@ -176,14 +192,15 @@ function deplacementJoueur() {
                 if (tireurPosition >= 180 && tireurPosition < 220) {
                     defaite();
 
-                    console.log("down");
-                    toutesLesDivs[tireurPosition].classList.remove('tireur');
-                    
-                    tireurPosition += directionVert;
-                    console.log(tireurPosition);
+                    if (mouvFin) {
+                        console.log("down");
+                        toutesLesDivs[tireurPosition].classList.remove('tireur');
+                        
+                        tireurPosition += directionVert;
+                        console.log(tireurPosition);
 
-                    toutesLesDivs[tireurPosition].classList.add('tireur');
-
+                        toutesLesDivs[tireurPosition].classList.add('tireur');
+                    }
                 }
                 break;
         }
@@ -201,12 +218,27 @@ function defaite() {
             remove();
             lose.style.opacity = 1;
             restart.style.opacity = 1;
+            toutesLesDivs[tireurPosition].classList.remove('tireur');
+            mouvFin = false;
         }
     }
 }
 
-document.addEventListener("keyup", function(e) {
+let point = 0;
 
+function victoire() {
+
+    if (point == 3600) {
+        remove();
+        win.style.opacity = 1;
+        restart.style.opacity = 1;
+        toutesLesDivs[tireurPosition].classList.remove('tireur');
+        mouvFin = false;
+
+    }
+}
+
+document.addEventListener("keyup", function(e) {
     let laserPosition = tireurPosition;
 
     function laser() {
@@ -220,30 +252,41 @@ document.addEventListener("keyup", function(e) {
     
         toutesLesDivs[laserPosition].classList.add('laser');
     
-    
-        for (let i = 0; i < alienInvaders.length; i++) {
+        // for (let i = 0; i < alienInvaders.length; i++) {
             // console.log("laser = " + laserPosition)
             // console.log("alien = " + alienInvaders[i])
 
-            if ((laserPosition) == alienInvaders[i]) {
-                alienDestroy.push(i);
+            if (toutesLesDivs[laserPosition].classList.contains("alien")) {
+                point += 100;
+                console.log("test ttesttse et t est es tet t et est et st")
+
+                const test = alienInvaders.indexOf(laserPosition);
+                alienDestroy.push(test);
+                console.log(test)
                 console.log(alienDestroy)
 
-                toutesLesDivs[alienInvaders[i]].classList.remove('alien')
-                // alienInvaders.splice(i)
+                toutesLesDivs[laserPosition].classList.remove('alien')
 
                 clearInterval(interval);
+
+                console.log("dfgerhbrtgrbergrsgergsvergze fzefze cgze cze  fhezcj zb hvhcg dg bczghc dnhgd zc hjds cjeh cbb ")
                 
                 toutesLesDivs[laserPosition].classList.remove('laser');
                 toutesLesDivs[laserPosition].classList.add('boom');
                 
                 setTimeout(() => {toutesLesDivs[laserPosition].classList.remove('boom')}, 100)   
+
+                document.querySelector("h3").innerHTML = `Scores : ${point}`;
+                victoire()
             }
-        }
+        // }
     }
 
     if (e.key === " ") {
+        TIR.play();
+        TIR.volume = 0.2;
         interval = setInterval(() => {laser()}, 100);
+        setTimeout(document.addEventListener("keyup", function(e) {}, 2000));
     }
         
 })
@@ -252,6 +295,9 @@ document.getElementById('restart').addEventListener('click', function(e) {
     location.reload();
     restart.style.opacity = 0;
     lose.style.opacity = 0;
+    let startButton = document.createElement("button");
+    startButton.setAttribute('id', 'start');
+    document.body.appendChild(startButton);
 })
 
 document.getElementById('start').addEventListener('click', function(e){
@@ -259,11 +305,21 @@ document.getElementById('start').addEventListener('click', function(e){
 })
 
 function game() {
-    // deplacementAlien();
+    FOND.volume = 0.1;
+    FOND.play();
+    FOND.loop = true;
+    deplacementAlien();
     creationGrilleEtAliens();
     deplacementJoueur();
+    start.remove();
+    mouvFin = true;
 }
 
+/*
+-----------------------------------------------------------------------------------------------------------------------
+**************************************************    ANCIEN CODE    **************************************************
+-----------------------------------------------------------------------------------------------------------------------
+*/
 
 // document.getElementById('start').addEventListener('click', function(e){
 //     alert('Start')
