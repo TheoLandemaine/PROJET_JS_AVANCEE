@@ -15,7 +15,7 @@
 
 <div>
     <h3>Project made by:</h3>
-    <a href="https://github.com/justRunnz"><h6>justRunnz |   
+    <a href="https://github.com/justRunnz"><h5>justRunnz |   
     <a href="https://github.com/RuKaSuu">RuKaSuu |
     <a href="https://github.com/TheoLandemaine">TheoLandemaine</a>
 
