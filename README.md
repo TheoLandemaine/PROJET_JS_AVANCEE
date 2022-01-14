@@ -24,7 +24,7 @@
 <br>
 <div>
     <a
-        href="https://open.vscode.dev/justRunnz/PROJET_JS_AVANCEE/tree/MC-dev/">
+        href="https://open.vscode.dev/justRunnz/PROJET_JS_AVANCEE/">
         <img src="https://open.vscode.dev/badges/open-in-vscode.svg">
     </a> 
     <!-- <a 
@@ -56,10 +56,10 @@
         <img src="https://badgen.net/github/branches/justRunnz/PROJET_JS_AVANCEE/">
     </a>
     <a>
-        <img src="https://badgen.net/github/commits/justRunnz/PROJET_JS_AVANCEE/MC-dev">
+        <img src="https://badgen.net/github/commits/justRunnz/PROJET_JS_AVANCEE/">
     </a>
     <a>
-        <img src="https://badgen.net/github/last-commit/justRunnz/PROJET_JS_AVANCEE/MC-dev">
+        <img src="https://badgen.net/github/last-commit/justRunnz/PROJET_JS_AVANCEE/">
     <!-- </a>
         <a>
         <img src="https://badgen.net/github/clones/justRunnz/PROJET_JS_AVANCEE/MC-dev">
