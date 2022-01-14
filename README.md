@@ -23,14 +23,13 @@
 
 <br>
 <div>
-    <!-- <a
+    <a
         href="https://open.vscode.dev/justRunnz/PROJET_JS_AVANCEE/tree/MC-dev/">
         <img src="https://open.vscode.dev/badges/open-in-vscode.svg">
-    </a>  -->
-    <a href='https://open.vscode.dev/justRunnz/PROJET_JS_AVANCEE/tree/MC-dev/' target="_blank"><img alt='Visual Studio Code' src='https://img.shields.io/badge/Open_in Visual Studio Code-100000?style=flat&logo=Visual Studio Code&logoColor=0088E4&labelColor=1F1F1F&color=007acc'/></a>
-    <a 
-        href='x-github-client://openRepo/https://github.com/justRunnz/PROJET_JS_AVANCEE'>
-        <img src='https://img.shields.io/badge/Open_With Github Desktop-100000?style=flat&logo=GitHub&logoColor=white&labelColor=1F1F1F&color=4a0e78'/></a>
+    </a> 
+    <!-- <a 
+        href='https://x-github-client/openRepo/github.com/justRunnz/PROJET_JS_AVANCEE'>
+        <img src='https://img.shields.io/badge/Open_With Github Desktop-100000?style=flat&logo=GitHub&logoColor=white&labelColor=1F1F1F&color=4a0e78'/></a> -->
 </div>
 
 
