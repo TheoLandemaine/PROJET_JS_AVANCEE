@@ -25,7 +25,6 @@ var audio = new Audio('./ressources/sounds/card_flip.mp3');
 audio.volume = 0.3;
 var audio2 = new Audio('./ressources/sounds/cards_shuffle.mp3');
 audio2.volume = 0.5;
-
 var audioWin = new Audio ('./ressources/sounds/win.mp3');
 audioWin.volume = 0.5;
 
