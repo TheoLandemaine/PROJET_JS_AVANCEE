@@ -60,10 +60,10 @@
     </a>
     <a>
         <img src="https://badgen.net/github/last-commit/justRunnz/PROJET_JS_AVANCEE/MC-dev">
-    </a>
+    <!-- </a>
         <a>
         <img src="https://badgen.net/github/clones/justRunnz/PROJET_JS_AVANCEE/MC-dev">
-    </a>
+    </a> -->
     <!-- <a>
         <img src="https://img.shields.io/github/downloads/justRunnz/PROJET_JS_AVANCEE/MC-dev/total.svg">
     </a> -->
