@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Lobster', cursive;
+  /* background: linear-gradient(to right, #b993d6, #8ca6db); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); */
+  background: url(./ressources/img/purple-back.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height : 90vh;
+}
+
+.grille {
+  background: rgba(161, 161, 161, 0.123);
+  display: grid;
+  grid-template: repeat(3, 200px) / repeat(4, 200px);
+  width: 800px;
+  height: 600px;
+  margin: 75px auto 0;
+  border-radius: 15px;
+}
+
+.carte {
+  background-color: transparent;
+  perspective: 1000px;
+  margin: 7.5px;
+}
+
+.double-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.face, .arriere {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  -webkit-backface-visibility: hidden;
+}
+
+.face {
+  background: #333;
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.face img {
+  width: 120px;
+}
+.arriere {
+  background: #333;
+  /* background: url("./ressources/card_back.jpg"); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+}
+.active {
+  transform: rotateY(180deg)
+}
+
+
+
+
+
+
+/*
+* Notification
+*/
+
+#notification_container {
+  position: fixed;
+  z-index: 300;
+  pointer-events: none;
+  top: 40px;
+  right: 25px;
+  width: 250px;
+  height: auto;
+}
+
+#notification_container .content {
+  box-shadow: 0 1px 5px 0 #8d8d8db0;
+  background: rgb(150, 53, 53);
+  padding: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: 0 0 15px;
+  color: white;
+}
+
+#notification_container .content2 {
+  box-shadow: 0 1px 5px 0 #8d8d8db0;
+  background: rgb(55, 134, 47);
+  padding: 8px;
+  border-radius: 4px; 
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: 0 0 15px;
+  color: white;
+}
+
+
+#notification_container .content p, .content2 p {
+  margin: auto;
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+
+#btn-rset{
+  background-color: rgba(100,255,0,1);
+  font-size : 20px;
+  padding : 15px 25px;
+  border : 0px;
+  border-radius : 10px;
+  position : relative;
+  left : 46%;
+}
+
+#second, #minute,#separator, #timer_txt,#games-p,
+#game-count,#cards-p,#cards-clicked-count{
+  color : #fff;
+  font-size: 30px;
+}
+
+.timer_main{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 30%;
+  top : 10px;
+  transform: translate(-30%);
+
+}
+
+.gamecounter_main{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top : 10px;
+  transform: translate(-50%);
+}
+
+.cards-clicked{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 70%;
+  top : 10px;
+  transform: translate(-70%);
+}
